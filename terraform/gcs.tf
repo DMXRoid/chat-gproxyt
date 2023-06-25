@@ -3,7 +3,7 @@ resource "google_storage_bucket" "hosting_bucket" {
 	location = "US"
 	storage_class = "STANDARD"
 
-	uniform_bucket_level_access = false
+	uniform_bucket_level_access = true
 
 	website {
 		main_page_suffix = "index.html"
@@ -11,10 +11,11 @@ resource "google_storage_bucket" "hosting_bucket" {
 	}
 }
 
-resource "google_storage_bucket_access_control" "hosting_public_rule" {
-  bucket = google_storage_bucket.hosting_bucket.id
-  role   = "READER"
-  entity = "allUsers"
+resource "google_storage_bucket_iam_binding" "hosting_public" {
+	bucket = google_storage_bucket.hosting_bucket.name
+	role = "roles/storage.objectViewer"
+	members = ["allUsers"]
+
 }
 
 resource "google_storage_bucket_object" "index_html" {

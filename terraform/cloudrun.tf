@@ -19,7 +19,8 @@ resource "google_cloud_run_service" "chatgproxyt_api" {
 }
 
 resource "google_cloud_run_service_iam_member" "public-access" {
+	location = local.gcp_region
 	service = google_cloud_run_service.chatgproxyt_api.name
-  role     = "roles/run.invoker"
-  member   = "allUsers"
+ 	role     = "roles/run.invoker"
+	member   = "allUsers"
 }

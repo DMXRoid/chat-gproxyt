@@ -24,6 +24,8 @@ resource "google_project_iam_binding" "cgproxyt_bg_edit" {
 	]
 	depends_on = [google_service_account.cgproxyt_pubsub]
 }
+
+
 resource "google_project_iam_binding" "cgproxyt_bg_view" {
 	project = local.gcp_project_id
 	role = "roles/bigquery.metadataViewer"

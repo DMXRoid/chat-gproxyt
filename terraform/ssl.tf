@@ -34,7 +34,7 @@ resource "google_certificate_manager_certificate_map_entry" "chatgproxyt_root" {
   description = "root cert"
   map          = google_certificate_manager_certificate_map.chatgproxyt.name
   certificates = [google_certificate_manager_certificate.chatgproxyt_ssl.id]
-  hostname     = local.domain_name
+  hostname     = format("chatgproxyt.%s",local.domain_name)
 }
 
 resource "google_certificate_manager_certificate_map_entry" "chatgproxyt_wildcard" {
@@ -42,7 +42,7 @@ resource "google_certificate_manager_certificate_map_entry" "chatgproxyt_wildcar
   description = "wildcard cert"
   map          = google_certificate_manager_certificate_map.chatgproxyt.name
   certificates = [google_certificate_manager_certificate.chatgproxyt_ssl.id]
-  hostname     = format("*.%s",local.domain_name)
+  hostname     = format("*.chatgproxyt.%s",local.domain_name)
 }
 
 
