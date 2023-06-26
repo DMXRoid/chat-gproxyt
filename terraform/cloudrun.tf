@@ -5,6 +5,14 @@ resource "google_cloud_run_service" "chatgproxyt_api" {
 		spec {
 			containers {
 				image = "gcr.io/cloudrun/hello"
+				env {
+					name = "REDIS_HOST"
+					value = google_redis_instance.chatgproxyt.host
+				}
+				env {
+					name = "REDIS_PORT"
+					value = google_redis_instance.chatgproxyt.port
+				}
 			}
 		}
 	}

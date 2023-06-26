@@ -2,8 +2,7 @@ resource "google_compute_backend_bucket" "frontend_bucket" {
 	name = "chatgproxyt-frontend-bucket"
 	description = "Frontend for chatgproxyt"
 	bucket_name = google_storage_bucket.hosting_bucket.name
-	enable_cdn = true
-
+	enable_cdn = false
 }
 
 resource "google_compute_url_map" "frontend_map" {
@@ -11,7 +10,7 @@ resource "google_compute_url_map" "frontend_map" {
 	default_service = google_compute_backend_bucket.frontend_bucket.id
 
 	host_rule {
-		hosts = [ format("chatgproxyt-api.%s", local.domain_name) ]
+		hosts = [ format("api.chatgproxyt.%s", local.domain_name) ]
 		path_matcher = "api"
 	}
 

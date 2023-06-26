@@ -11,7 +11,7 @@ resource "google_dns_record_set" "chatgproxyt_frontend" {
 	rrdatas = [ google_compute_global_address.lb_ip.address ]
 }
 resource "google_dns_record_set" "chatgproxyt_api" {
-	name = format("chatgproxyt-api.%s.", local.domain_name)
+	name = format("api.chatgproxyt.%s.", local.domain_name)
 	type = "A"
 	ttl = 300
 	managed_zone = google_dns_managed_zone.default.name

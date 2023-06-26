@@ -34,3 +34,7 @@ override.tf.json
 terraform.rc
 
 # don't include the oauth creds tf
+oauth.tf
+
+# don't include venv
+.venv
