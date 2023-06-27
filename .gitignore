@@ -38,3 +38,6 @@ oauth.tf
 
 # don't include venv
 .venv
+
+#python cache
+__pycache__

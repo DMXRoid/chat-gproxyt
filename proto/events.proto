@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+message ChatGProxyTUsage {
+	string user = 1;
+	string prompt = 2;
+	string response = 3;
+	int32 timestamp = 4;
+}

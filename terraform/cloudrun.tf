@@ -4,7 +4,7 @@ resource "google_cloud_run_service" "chatgproxyt_api" {
 	template {
 		spec {
 			containers {
-				image = "gcr.io/cloudrun/hello"
+				image = "us-central1-docker.pkg.dev/schiros-net/chatgproxyt/chatgproxyt:1.2"
 				env {
 					name = "REDIS_HOST"
 					value = google_redis_instance.chatgproxyt.host
@@ -14,12 +14,14 @@ resource "google_cloud_run_service" "chatgproxyt_api" {
 					value = google_redis_instance.chatgproxyt.port
 				}
 			}
+			service_account_name = google_service_account.cgproxyt_app.email
 		}
 	}
 
 	metadata {
 		annotations = {
 			"run.googleapis.com/ingress" = "internal-and-cloud-load-balancing"
+			"run.googleapis.com/vpc-access-connector" = "chatgproxyt"
 		}
 	}
 
