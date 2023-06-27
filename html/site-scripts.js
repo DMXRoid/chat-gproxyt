@@ -1,6 +1,21 @@
+AJAX_HOST = "httos://api.chatgproxyt.schiros.net/";
+
 $.ajaxSetup({
-   url: '/ajax',
    type: 'POST',
-   cache: false
+   cache: false,
+	dataType: 'JSON'
 });
 
+function getHistory() {
+	$.ajax({
+		url: AJAX_HOST
+		success: function(resp) {
+
+		}
+	});
+
+}
+
+$(function() {
+
+});
